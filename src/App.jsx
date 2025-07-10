@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import './App.css'
+// import './App.css'
 import Header from './layouts/header'
 import Home from './components/main'
 import Whyus from './components/whyus'

@@ -1,5 +1,4 @@
 import React from 'react'
-import img from '../assets/images/main.png'
 const Home = () => {
   return (
     <main>
@@ -7,7 +6,7 @@ const Home = () => {
       <span className='mark'> للجسم المثالي</span>
       </p>
 
-<button className='btn'>إشتراك السوبر 3 شهور 🔥  </button>
+<button className='btn' onClick={e => window.scrollTo(6000,6000) }>إشتراك السوبر 3 شهور 🔥  </button>
     </main>
   )
 }

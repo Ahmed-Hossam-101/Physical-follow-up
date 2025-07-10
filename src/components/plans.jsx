@@ -1,93 +1,124 @@
-import React from 'react'
+import React, { useState } from 'react';
+import SendingBox from './sendingbox';
 
 const Plans = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  // بيانات الباقات
+  const plans = [
+    {
+      id: 1,
+      name: "الـ Basic",
+      price: "250",
+      features: [
+        "خصم بدل 325جنيه لفترة محدودة!",
+        "اشتراك اسبوعي",
+                "تواصل بشكل يومي مع مدرب علي وتس آب ",
+        "استشارة مع مدرب شخصي",
+        "خطة تمرين أساسية",
+        "دليل غذائي متكامل",
+
+      ],
+      popular: false
+    },
+    {
+      id: 2,
+      name: "🔥 الـفرجلوو",
+      price: "1000",
+      features: [
+
+        "اشتراك ثلاث شهور  ",
+        "تواصل بشكل يومي مع مدرب علي وتس آب ",
+     "تواصل فديو كول كل اسبوع",
+        "استشارة مع مدرب شخصي",
+        "دليل غذائي متكامل",
+        "متابعة دقيقة للتقدم",
+      ],
+      popular: true,
+      floatingIcon: true
+    },
+    {
+      id: 3,
+      name: "Elite سوبر ",
+      price: "2299",
+      features: [
+        "6 شهور اشتراك",
+        "تدريب شخصي 1 على 1",
+        "خطة تغذية متقدمة",
+        "تواصل فديو كول كل اربع ايام",
+        "تواصل يومي مع مدرب علي واتس آب",
+      ],
+      popular: false
+    }
+  ];
+
+  // بيانات المميزات العامة
+  const features = [
+    {
+      id: 1,
+      title: " قناة تلجرام",
+      description: " قناة تلجرام عشان تتواصل مع الاعضاء",
+    },
+    {
+      id: 3,
+      title: "تحديات التقدم",
+      description: "شارك في تحديات ممتعة واحصل على جوائز عند تحقيقك للأهداف والمستويات الجديدة.",
+    }
+  ];
+
+  const handleSubscribe = (plan) => {
+    setSelectedPlan(plan);
+  };
+
   return (
-   <div class="plans">
-    <div class="head">
-      <h2>الاشتركات⚡</h2>
-      <p>اختر الباقة المثالية التي تناسب أهدافك في اللياقة البدنية وأسلوب حياتك. جميع الباقات تشمل الوصول إلى فعالياتنا وأنشطتنا الاجتماعية المخصصة !</p>
-    </div>
-    
-    <div class="plans-container">
-      <div class="plan">
-        <div class="plan-icon">
-          <i class="fas fa-dumbbell"></i>
-        </div>
-        <h3>Starter Pack</h3>
-        <div class="price">150</div>
-        <ul class="features">
-          <li><i class="fas fa-check"></i> Access to gym equipment</li>
-          <li><i class="fas fa-check"></i> 3 group classes per week</li>
-          <li><i class="fas fa-check"></i> Locker access</li>
-          <li><i class="fas fa-check"></i> Basic workout plan</li>
-          <li><i class="fafs fa-check"></i> Monthly progress check</li>
-        </ul>
-        <button class="btn">Get Started</button>
+    <div className="plans">
+      <div className="head">
+        <h2>الاشتركات⚡</h2>
+        <p>اختر الباقة المثالية التي تناسب أهدافك في اللياقة البدنية وأسلوب حياتك. جميع الباقات تشمل الوصول إلى فعالياتنا وأنشطتنا الاجتماعية المخصصة!</p>
       </div>
-      
-      <div class="plan">
-        <div class="popular-badge">MOST POPULAR</div>
-        <div class="plan-icon floating">
-          <i class="fas fa-fire"></i>
-        </div>
-        <h3>Fitness Pro</h3>
-        <div class="price">49</div>
-        <ul class="features">
-          <li><i class="fas fa-check"></i> Unlimited equipment access</li>
-          <li><i class="fas fa-check"></i> Unlimited group classes</li>
-          <li><i class="fas fa-check"></i> Personal trainer consultation</li>
-          <li><i class="fas fa-check"></i> Nutrition guide</li>
-          <li><i class="fas fa-check"></i> Progress tracking</li>
-          <li><i class="fas fa-check"></i> Supplement discounts</li>
-        </ul>
-        <button class="btn">Get Started</button>
+
+      <div className="plans-container">
+        {plans.map(plan => (
+          <div className="plan" key={plan.id}>
+            {plan.popular && <div className="popular-badge">RECOMMENDED</div>}
+            
+            <h3>{plan.name}</h3>
+            <div className="price">{plan.price}</div>
+            <ul className="features">
+              {plan.features.map((feature, index) => (
+                <li key={index}>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <button 
+              className="btn" 
+              onClick={() => handleSubscribe(plan)}
+            >
+              اشترك الآن
+            </button>
+          </div>
+        ))}
       </div>
-      
-      <div class="plan">
-        <div class="plan-icon">
-          <i class="fas fa-crown"></i>
-        </div>
-        <h3>Elite Athlete</h3>
-        <div class="price">79</div>
-        <ul class="features">
-          <li><i class="fas fa-check"></i> All Fitness Pro features</li>
-          <li><i class="fas fa-check"></i> 1-on-1 personal training</li>
-          <li><i class="fas fa-check"></i> Recovery sessions</li>
-          <li><i class="fas fa-check"></i> Advanced nutrition plan</li>
-          <li><i class="fas fa-check"></i> Competition preparation</li>
-          <li><i class="fas fa-check"></i> 24/7 facility access</li>
-        </ul>
-        <button class="btn">Get Started</button>
+
+      {selectedPlan && (
+        <SendingBox 
+          date={new Date().toLocaleDateString()} 
+          price={selectedPlan.price} 
+          plan={selectedPlan.name} 
+        />
+      )}
+
+      <div className="features-grid">
+        {features.map(feature => (
+          <div className="feature-card" key={feature.id}>
+            <h4>{feature.title}</h4>
+            <p>{feature.description}</p>
+          </div>
+        ))}
       </div>
     </div>
-    
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-music"></i>
-        </div>
-        <h4>Teen-Friendly Playlists</h4>
-        <p>Work out to the latest hits curated specifically for our teen members.</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <h4>Social Events</h4>
-        <p>Join our monthly social events to meet other teens with similar fitness goals.</p>
-      </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-trophy"></i>
-        </div>
-        <h4>Progress Challenges</h4>
-        <p>Compete in fun challenges with prizes and rewards for reaching milestones.</p>
-      </div>
-    </div>
-  </div>
-  )
+  );
 }
 
-export default Plans
+export default Plans;
